@@ -60,4 +60,42 @@ public class Complex{
 		System.out.println(z.img());
 
 }
+
+	public static Complex setFromModulusAngle(double mag, double ang){
+		double x = mag*Math.cos(ang);
+		double y = mag*Math.sin(ang);
+		Complex z = new Complex(x,y);
+		return z;
+}
+
+	public static Complex add(Complex z, Complex w){
+		double a = z.x + w.x;
+		double b = z.y + w.y;
+		Complex c = new Complex(a,b);
+		return c;
+}
+
+	public static Complex subtract(Complex z, Complex w){
+                double a = z.x - w.x;
+                double b = z.y - w.y;
+                Complex c = new Complex(a,b);
+                return c;
+}
+
+	public static Complex multiply(Complex z, Complex w){
+                double a = z.x*w.x - z.y*w.y;
+                double b = z.y*w.x + w.y*z.x;
+                Complex c = new Complex(a,b);
+                return c;
+}
+
+	  public static Complex divide(Complex z, Complex w){
+                double a = z.x + w.x;
+                double b = z.y + w.y;
+                Complex c = new Complex(a,b);
+                return c;
+}
+
+
+
 }
