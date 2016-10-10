@@ -49,7 +49,10 @@ public class Complex{
 		return z;
 }
 
-	
+	static Complex ONE = new Complex(1,0);
+	static Complex ZERO = new Complex();
+	static Complex I = new Complex(0,1);
+
 	public static void main(String[] args){
 		Complex z = new Complex(0.6,0.8);
 		Complex w = new Complex(6,10);
