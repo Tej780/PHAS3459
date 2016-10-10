@@ -51,7 +51,10 @@ public class Complex{
 
 	
 	public static void main(String[] args){
-		Complex z = new Complex(3,1);
+		Complex z = new Complex(0.6,0.8);
+		Complex w = new Complex(6,10);
+		System.out.println(Complex.divide(z,w));
+		System.out.println(w.normalised());
 		System.out.println(z.toString());
 		System.out.println(z.conjugate());
 		System.out.println(z.angle());
@@ -90,12 +93,17 @@ public class Complex{
 }
 
 	  public static Complex divide(Complex z, Complex w){
-                double a = z.x + w.x;
-                double b = z.y + w.y;
-                Complex c = new Complex(a,b);
+                Complex a = Complex.multiply(z,w.conjugate());
+                double b = w.x*w.x + w.y*w.y;
+                Complex c = new Complex(a.x/b, a.y/b);
                 return c;
 }
 
-
+	public Complex normalised(){
+		double xhat = this.x/this.modulus();
+                double yhat = this.y/this.modulus();
+                Complex rhat = new Complex(xhat, yhat);
+                return rhat;
+}
 
 }
