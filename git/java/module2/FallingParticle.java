@@ -40,9 +40,8 @@ public class FallingParticle{
 			t+=deltaT;
 			   }
 		System.out.println("Time Taken to fall: " + t + "seconds");
-		System.out.println("Velocity at the bottom: " + v + "" );
+		System.out.println("Velocity at the bottom: " + v + "m/s" );
 		t=0;
-		v=0;
 				       }
 
 			    }
