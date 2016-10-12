@@ -1,3 +1,5 @@
+package module2;
+
 public class Vector{
 	int x,y,z;	
 	public Vector(){}

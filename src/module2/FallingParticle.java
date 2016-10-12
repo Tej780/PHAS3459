@@ -1,3 +1,5 @@
+package module2;
+
 public class FallingParticle{
 
 	static final double g=9.81;
