@@ -1,3 +1,5 @@
+package module2;
+
 public class ThreeVector{
 
 	double x,y,z;//represents the three components of the vector
