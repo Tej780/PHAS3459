@@ -3,7 +3,7 @@ public class TestComplex{
 	public static void main(String[] args){
 		Complex c1 = new Complex(2,-1);
 		Complex c2 = new Complex(-1,2);		
-
+		System.out.println(c1.real());
 		System.out.println(Complex.multiply(c1,c2));
 		System.out.println(Complex.divide(c1,c2));
 		System.out.println(Complex.multiply(c1,Complex.I));

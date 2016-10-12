@@ -1,6 +1,6 @@
 public class ThreeVector{
 
-	double x,y,z;
+	double x,y,z;//represents the three components of the vector
         public ThreeVector(){}
         public ThreeVector(double a, double b, double c){
                 x=a;

@@ -1,6 +1,7 @@
 public class ParticleMain{
 	public static void main(String[] args){
         	FallingParticle tej = new FallingParticle(6.3,4.1);
+		System.out.println(tej);
                 tej.setZ(8);
 		tej.setV(0);
 		tej.drop(0.5);

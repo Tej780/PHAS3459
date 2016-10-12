@@ -33,7 +33,7 @@ public class FallingParticle{
 		v = v + a*deltaT;
 		z = z + v*deltaT;
 					     }
-
+	
 	public void drop(double deltaT){
 		while (z>0){
 			this.doTimeStep(deltaT);
@@ -43,6 +43,10 @@ public class FallingParticle{
 		System.out.println("Velocity at the bottom: " + v + "m/s" );
 		t=0;
 				       }
+	
+	public String toString(){
+	return "An object of mass "+m+"kg falling in a drag coefficient of "+d+"kg/m";
+				}
 
 			    }
 
