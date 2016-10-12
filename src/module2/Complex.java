@@ -7,22 +7,31 @@ public class Complex{
 		x=a;
 		y=b;
 		    			  }
-
+	/**
+	 * Returns the real part of the complex number
+	 * @return x, real part
+	 */
 	public double real(){
 		return this.x;
 			    }
-
+	/**
+	 * Returns the imaginary part of the complex number
+	 * @return y, imaginary part
+	 */
 	public double img(){
 		return this.y;
 			   }
-
+	/**
+	 * Calculates the modulus (length) of the complex number
+	 * @return
+	 */
 	public double modulus(){
 		double mod = Math.sqrt(this.x*this.x + this.y*this.y);
 		return mod;
 			       }
 
 	public double angle(){
-		double arg = Math.atan(this.y/this.x);
+		double arg = Math.toDegrees(Math.atan(this.y/this.x));
 		return arg;
 			     }
 
