@@ -4,6 +4,7 @@ public class ParticleMain{
 	public static void main(String[] args){
         	FallingParticle tej = new FallingParticle(6.3,4.1);
 		System.out.println(tej);
+		//Each time the particle is 'dropped', the position and velocity must be reset before the object can be dropped again.
                 tej.setZ(8);
 		tej.setV(0);
 		tej.drop(0.5);
