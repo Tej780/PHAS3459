@@ -12,9 +12,9 @@ public class TestThreeVector{
 		System.out.println(v3);
 		//Find their unit vectors
 		System.out.println(v1.unitVector().toString());
-        System.out.println(v2.unitVector());
-        System.out.println(v3.unitVector());
-        //Find dot and cross products using non-static methods
+        	System.out.println(v2.unitVector());
+        	System.out.println(v3.unitVector());
+        	//Find dot and cross products using non-static methods
 		System.out.println(v1.dot(v2));
 		System.out.println(v1.dot(v3));
 		System.out.println(v1.cross(v2));
@@ -22,9 +22,9 @@ public class TestThreeVector{
 		//Find dot and cross products using static methods
 		System.out.println(ThreeVector.Dot(v1,v2));
 		System.out.println(ThreeVector.Dot(v1,v3));
-        System.out.println(ThreeVector.Cross(v1,v2));
-        System.out.println(ThreeVector.Cross(v1,v3));
-        //Find angles between vectors using non-static and static methods
+        	System.out.println(ThreeVector.Cross(v1,v2));
+        	System.out.println(ThreeVector.Cross(v1,v3));
+        	//Find angles between vectors using non-static and static methods
 		System.out.println(v1.angle(v2));
 		System.out.println(v1.angle(v3));
 		System.out.println(ThreeVector.Angle(v1,v2));
