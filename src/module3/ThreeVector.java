@@ -1,5 +1,4 @@
 //package module2;
-
 public class ThreeVector{
 	
 	double x,y,z;//represents the three components of the vector
@@ -10,19 +9,24 @@ public class ThreeVector{
                 z=c;
 
 							}	
-	static ThreeVector Null = new ThreeVector();
         /**
     	 * Produces a unit vector object in the same direction as the original vector
     	 * @return Unit Vector
     	 */
-        public ThreeVector unitVector(){
-		
-                double ux = this.x/this.mag();
-                double uy = this.y/this.mag();
-                double uz = this.z/this.mag();
-                ThreeVector u = new ThreeVector(ux, uy, uz);
+        public ThreeVector unitVector() throws ArithmeticException{
+		ThreeVector u = new ThreeVector();
+		try{
+			if(this.mag() == 0){
+				throw new ArithmeticException();
+					}				        
+                	double ux = this.x/this.mag();
+                	double uy = this.y/this.mag();
+                	double uz = this.z/this.mag();
+			u = new ThreeVector(ux, uy, uz);
+		}catch(ArithmeticException e){
+			System.out.println("Vector (0,0,0) has no defined direction, cannot create unit vector");			}	
+
                 return u;
-	
 			               }
 
         /**

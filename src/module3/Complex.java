@@ -49,12 +49,18 @@ public class Complex{
 	/**Normalises the complex number, thus finding a number with the same argument but modulus 1.
 	*
 	*/
-	public Complex normalised(){                    
+	public Complex normalised(){
+		Complex rhat = new Complex();
+		try{
 		double xhat = this.x/this.modulus();
                 double yhat = this.y/this.modulus();
-                Complex rhat = new Complex(xhat, yhat);
-                return rhat;
-				   }
+                rhat = new Complex(xhat, yhat);
+                
+		}catch(Exception e){
+		System.out.println("Cannot normalise 0!");
+		}	
+		return rhat;
+				}
 	/**checks if two complex numbers are equal
 	*@return true or false
 	*/
@@ -104,6 +110,7 @@ public class Complex{
 		System.out.println(z.modulus());
 		System.out.println(z.real());
 		System.out.println(z.img());
+		System.out.println(ZERO.normalised());
 
 					      }
 	/**Allows you to add two complex numbers together
