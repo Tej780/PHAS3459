@@ -1,5 +1,4 @@
 //package module2;
-
 public class FallingParticle{
 	//acceleration due to gravity is constant and has the same value for all
 	//FallingParticle objects
@@ -10,12 +9,28 @@ public class FallingParticle{
 	double v = 0;
 	double z;
 	//I have omited an empty constructor as I want to avoid an issue with 0 mass
-	public FallingParticle(double mass, double drag){
-		m=mass;
-		d=drag;
+	public FallingParticle(double mass, double drag) throws IllegalArgumentException{
+		try{
+			if(mass <=0){
+				throw new IllegalArgumentException();
+				}
+			m=mass;
+			d=drag;
+		}catch(IllegalArgumentException e){
+			System.out.println("Mass must be positive!");
+						}
 					 }
-	public void setZ(double Z){
-		z=Z;
+	public void setZ(double Z) throws IllegalArgumentException{
+		try{
+			if(Z<=0){
+				throw new IllegalArgumentException();
+				}
+			z=Z;
+		}catch(IllegalArgumentException e){
+			System.out.println("z must be positive!");
+			return;
+						}
+			
 			  }
 	public double getZ(){
 		return z;
@@ -57,6 +72,13 @@ public class FallingParticle{
 	public String toString(){
 	return "An object of mass "+this.m+"kg falling in a drag coefficient of "+this.d+"kg/m";
 				}
-
+	public static void main(String[] args){
+		FallingParticle n = new FallingParticle(5,5);
+		n.setZ(8);
+		n.drop(0.01);
+		n.setZ(-20);
+		FallingParticle g = new FallingParticle(-5,5);
+		System.out.println(g.d);
+						}
 			    }
 

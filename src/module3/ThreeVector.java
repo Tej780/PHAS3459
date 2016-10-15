@@ -24,7 +24,9 @@ public class ThreeVector{
                 	double uz = this.z/this.mag();
 			u = new ThreeVector(ux, uy, uz);
 		}catch(ArithmeticException e){
-			System.out.println("Vector (0,0,0) has no defined direction, cannot create unit vector");			}	
+			System.out.println("Vector (0,0,0) has no defined direction, cannot create unit vector");
+			return null;
+				}	
 
                 return u;
 			               }
@@ -69,14 +71,20 @@ public class ThreeVector{
          * @param w vector 2
          * @return Angle
          */
-        public static double Angle(ThreeVector v, ThreeVector w){
-	    		
-	    
-            double magA = v.mag();
-            double magB = w.mag();
-            double aDotb = v.dot(w);
-            double cosTheta = aDotb/(magA*magB);
-            double theta = Math.toDegrees(Math.acos(cosTheta));
+        public static double Angle(ThreeVector v, ThreeVector w) throws ArithmeticException{
+	    double theta = 0; 		
+	    try{
+            	double magA = v.mag();
+            	double magB = w.mag();
+		if(magA==0 || magB==0){
+			throw new ArithmeticException();
+				}
+            	double aDotb = v.dot(w);
+            	double cosTheta = aDotb/(magA*magB);
+            	theta = Math.toDegrees(Math.acos(cosTheta));
+	    }catch(ArithmeticException e){
+		System.out.println("Cannot calculate angle with vector (0,0,0)");
+			}
             return theta;
 		}
 
@@ -138,5 +146,6 @@ public class ThreeVector{
         	System.out.println(ThreeVector.Cross(v,w));
         	System.out.println(ThreeVector.Add(v,w));
 		System.out.println(Null2.unitVector());
+		System.out.println(Null2.angle(w));
 					      }
 			 }
