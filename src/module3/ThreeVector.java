@@ -1,4 +1,4 @@
-//package module2;
+package module2;
 public class ThreeVector{
 	
 	double x,y,z;//represents the three components of the vector
@@ -9,6 +9,18 @@ public class ThreeVector{
                 z=c;
 
 							}	
+
+
+        /**                                                    
+    	 * Returns the magnitude of the given vector
+    	 * @return magnitude
+    	 */
+        public double mag(){
+                double magnitude = Math.sqrt(x*x + y*y + z*z);
+                return magnitude;
+			   }
+
+
         /**
     	 * Produces a unit vector object in the same direction as the original vector
     	 * @return Unit Vector
@@ -16,7 +28,7 @@ public class ThreeVector{
         public ThreeVector unitVector() throws ArithmeticException{
 		ThreeVector u = new ThreeVector();
 		try{
-			if(this.mag() == 0){
+			if(this.mag() == 0){//prevents the program from attempting to produce a unit vector of the null vector (0,0,0)
 				throw new ArithmeticException();
 					}				        
                 	double ux = this.x/this.mag();
@@ -31,6 +43,7 @@ public class ThreeVector{
                 return u;
 			               }
 
+
         /**
     	 * Facilitates the printing of the vector object
     	 * @return Vector as text string
@@ -40,14 +53,6 @@ public class ThreeVector{
 		return vector;
 				}
 
-        /**
-    	 * Returns the magnitude of the given vector
-    	 * @return magnitude
-    	 */
-        public double mag(){
-                double magnitude = Math.sqrt(x*x + y*y + z*z);
-                return magnitude;
-			   }
 
         /**
     	 * Calculates the scalar (dot) product of two given vectors
@@ -60,59 +65,32 @@ public class ThreeVector{
         	double vDotw = v.x*w.x + v.y*w.y + v.z*w.z;
         	return vDotw;
 							      }
-        public double dot(ThreeVector w){
+        public double dot(ThreeVector w){//can use static and non static versions of these methods
             double aDotb = ThreeVector.Dot(this,w);
             return aDotb;
 					                    }
 
-        /**
-         * Calculates the angle between two vectors
-         * @param v vector 1
-         * @param w vector 2
-         * @return Angle
-         */
-        public static double Angle(ThreeVector v, ThreeVector w) throws ArithmeticException{
-	    double theta = 0; 		
-	    try{
-            	double magA = v.mag();
-            	double magB = w.mag();
-		if(magA==0 || magB==0){
-			throw new ArithmeticException();
-				}
-            	double aDotb = v.dot(w);
-            	double cosTheta = aDotb/(magA*magB);
-            	theta = Math.toDegrees(Math.acos(cosTheta));
-	    }catch(ArithmeticException e){
-		System.out.println("Cannot calculate angle with vector (0,0,0)");
-			}
-            return theta;
-		}
 
-								
-        public double angle(ThreeVector w){
-                double theta = ThreeVector.Angle(this,w);
-                return theta;
-					  }
-
-        /**
+        /**                                                           
          * Calculates the vector (cross) product of two given vectors
          * @param v vector 1
          * @param w vector 2
          * @return Vector
          */
         public static ThreeVector Cross(ThreeVector v, ThreeVector w){
-        	double a = v.y*w.z - w.y*v.z;
-            double b = v.z*w.x - w.z*v.x;
-            double c = v.x*w.y - w.x*v.y;
-            ThreeVector x = new ThreeVector(a,b,c);
-            return x;
-								     } 
+		double a = v.y*w.z - w.y*v.z;
+		double b = v.z*w.x - w.z*v.x;
+		double c = v.x*w.y - w.x*v.y;
+		ThreeVector x = new ThreeVector(a,b,c);
+		return x;
+								     }
         public ThreeVector cross(ThreeVector w){
         	ThreeVector x = ThreeVector.Cross(this,w);
         	return x; 
 					       }
 
-        /**
+
+        /**                                                         
          * Adds two vectors together
          * @param v vector 1
          * @param w vector 2
@@ -120,10 +98,10 @@ public class ThreeVector{
          */
         public static ThreeVector Add(ThreeVector v, ThreeVector w){
         	double x = v.x + w.x;
-            double y = v.y + w.y;
-            double z = v.z + w.z;
-            ThreeVector add = new ThreeVector(x,y,z);
-            return add;
+                double y = v.y + w.y;
+                double z = v.z + w.z;
+                ThreeVector add = new ThreeVector(x,y,z);
+		return add;
 
 								   }
         public ThreeVector add(ThreeVector w){
@@ -132,6 +110,34 @@ public class ThreeVector{
 					     } 
 
 
+        /**
+         * Calculates the angle between two vectors
+         * @param v vector 1
+         * @param w vector 2
+         * @return Angle
+         */
+        public static double Angle(ThreeVector v, ThreeVector w) throws ArithmeticException{
+		double theta = 0;
+		try{
+            		double magA = v.mag();
+            		double magB = w.mag();
+		if(magA==0 || magB==0){//as before, if either vector is the null vector, the angle is undefined so the program must be prevented from attempting this calculation
+			throw new ArithmeticException();
+					}
+            	double aDotb = v.dot(w);
+            	double cosTheta = aDotb/(magA*magB);
+            	theta = Math.acos(cosTheta);//the angle should be in radians by default
+		}catch(ArithmeticException e){
+			System.out.println("Cannot calculate angle with vector (0,0,0)");
+						}
+		return theta;
+											}					
+        public double angle(ThreeVector w){
+                double theta = ThreeVector.Angle(this,w);
+                return theta;
+					  }
+
+						/*
         public static void main(String[] args){
         	ThreeVector w  = new ThreeVector(6,3,1);
         	ThreeVector v = new ThreeVector(2,4,2);
@@ -147,5 +153,5 @@ public class ThreeVector{
         	System.out.println(ThreeVector.Add(v,w));
 		System.out.println(Null2.unitVector());
 		System.out.println(Null2.angle(w));
-					      }
+					      }*/
 			 }

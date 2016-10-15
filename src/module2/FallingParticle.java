@@ -1,4 +1,4 @@
-package module2;
+//package module2;
 
 public class FallingParticle{
 	//acceleration due to gravity is constant and has the same value for all
@@ -49,13 +49,14 @@ public class FallingParticle{
 			this.doTimeStep(deltaT);
 			t+=deltaT;
 			   }
-		System.out.println("Time Taken to fall: " + t + "seconds");
+		System.out.println("The time interval is: " + deltaT + "s");
+		System.out.println("Time Taken to fall: " + t + "s");
 		System.out.println("Velocity at the bottom: " + v + "m/s" );
 		t=0;
 				       }
 	// simply prints out the mass and drag of the particular Particle object
 	public String toString(){
-	return "An object of mass "+this.m+"kg falling in a drag coefficient of "+this.d+"kg/m";
+		return "An object of mass "+this.m+"kg falling in a drag coefficient of "+this.d+"kg/m";
 				}
 
 			    }
