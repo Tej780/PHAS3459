@@ -79,9 +79,15 @@ public class FallingParticle{
 	*
 	*/
 	public void doTimeStep(double deltaT){
-		double a = (d*v*v)/m - g;
+		double a = 0;
+		if(v<=0){//this ensures that the acceleration due to drag always opposes the direction of motion
+			a = (d*v*v)/m - g;
+		}else if(v>0){
+			a = -(d*v*v)/m - g;
+				}
 		v = v + a*deltaT;
 		z = z + v*deltaT;
+		
 					     }
 	/**
 	*Simulates the motion of the particle once it is dropped.
