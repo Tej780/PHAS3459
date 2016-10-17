@@ -53,7 +53,7 @@ public class Complex{
 	 */
 	public Complex conjugate(){
 		double u = this.real;
-		double v = -1*(this.imag);
+		double v = -(this.imag);
 		Complex w = new Complex(u,v);
 		return w;
 	}
