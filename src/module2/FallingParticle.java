@@ -1,4 +1,4 @@
-//package module2;
+package module2;
 
 public class FallingParticle{
 	//acceleration due to gravity is constant and has the same value for all

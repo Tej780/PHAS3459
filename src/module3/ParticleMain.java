@@ -1,4 +1,4 @@
-package module2;
+package module3;
 
 public class ParticleMain{
 	public static void main(String[] args){

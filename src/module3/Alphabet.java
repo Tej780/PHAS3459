@@ -1,3 +1,4 @@
+package module3;
 import java.util.Random;
 import java.lang.Integer;
 import java.lang.Math;
