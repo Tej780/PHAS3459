@@ -14,7 +14,7 @@ public class Alphabet{
 		int randInt = rand.nextInt(127);
 		char randomChar = (char)(randInt);
 		return randomChar;
-					    }
+	}
 
 
 	public static void main (String[] args){
@@ -33,13 +33,13 @@ public class Alphabet{
 				catch(Exception e){
 					//count the number of exceptions thrown
 					exceptions++;
-					}
-								}
+				}
+			}
 			//reroll the random character
 			randChar =  randomCharacter();
-								}	
+		}	
 		System.out.println(s);
 		System.out.println(total);
 		System.out.println(exceptions);
-					}
-						}	
+	}
+}	

@@ -41,8 +41,8 @@ public class Complex{
 	public double angle(){
 		double arg = 0;
 		//determines in which quadrant the complex number resides
-			arg = Math.toDegrees(Math.atan2(this.imag,this.real));
-		
+		arg = Math.toDegrees(Math.atan2(this.imag,this.real));
+
 		return arg;
 	}
 
@@ -64,16 +64,16 @@ public class Complex{
 	 *@return Normalised Complex number
 	 */
 	public Complex normalised() throws ArithmeticException{
-		
-			double mod = this.modulus();
-			double xhat = this.real/mod;
-			double yhat = this.imag/mod;
-			//prevents the program from normalising 0
-			if(this.modulus()==0){
-				throw new ArithmeticException();
-			}
-			Complex rhat = new Complex(xhat, yhat);
-	
+
+		double mod = this.modulus();
+		double xhat = this.real/mod;
+		double yhat = this.imag/mod;
+		//prevents the program from normalising 0
+		if(this.modulus()==0){
+			throw new ArithmeticException();
+		}
+		Complex rhat = new Complex(xhat, yhat);
+
 		return rhat;
 	}
 
@@ -157,15 +157,15 @@ public class Complex{
 	 *Divides one complex number by another
 	 */
 	public static Complex divide(Complex z, Complex w) throws Exception{
-		
-			Complex a = Complex.multiply(z,w.conjugate());
-			double b = w.modulus()*w.modulus();
-			//prevents the program from dividing by 0
-			if(b==0){
-				throw new Exception();
-			}
-			Complex c = new Complex(a.real/b, a.imag/b);
-		
+
+		Complex a = Complex.multiply(z,w.conjugate());
+		double b = w.modulus()*w.modulus();
+		//prevents the program from dividing by 0
+		if(b==0){
+			throw new Exception();
+		}
+		Complex c = new Complex(a.real/b, a.imag/b);
+
 		return c;
 	}
 

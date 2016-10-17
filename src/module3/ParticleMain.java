@@ -4,23 +4,23 @@ public class ParticleMain{
 	public static void main(String[] args){
 		FallingParticle tej = null;
 		try{
-		tej = new FallingParticle(6.3,4.1);
+			tej = new FallingParticle(6.3,4.1);
 		}catch(Exception e){
 			System.out.println("Mass must be positive!");
 		}
 		System.out.println(tej);
 		//Each time the particle is 'dropped', the position must be reset before the object can be dropped again.
 		try{
-		tej.setZ(8);
-		tej.drop(0.5);
-		tej.setZ(8);
-		tej.drop(0.1);
-		tej.setZ(8);
-		tej.drop(0.01);
-		tej.setZ(8);
-		tej.drop(0.001);
-		tej.setZ(8);
-		tej.drop(0.0001);
+			tej.setZ(8);
+			tej.drop(0.5);
+			tej.setZ(8);
+			tej.drop(0.1);
+			tej.setZ(8);
+			tej.drop(0.01);
+			tej.setZ(8);
+			tej.drop(0.001);
+			tej.setZ(8);
+			tej.drop(0.0001);
 		}catch(Exception e){
 			System.out.println("z must be positive!");
 			return;

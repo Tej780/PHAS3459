@@ -15,11 +15,11 @@ public class FallingParticle{
 
 	public FallingParticle(double mass, double drag) throws IllegalArgumentException{
 
-			if(mass <=0){//avoids unphysical systems with negative masses
-				throw new IllegalArgumentException();
-			}
-			m=mass;
-			d=drag;
+		if(mass <=0){//avoids unphysical systems with negative masses
+			throw new IllegalArgumentException();
+		}
+		m=mass;
+		d=drag;
 	}
 
 
@@ -28,11 +28,11 @@ public class FallingParticle{
 	 *@param Z initial height
 	 */
 	public void setZ(double Z) throws Exception{
-		
-			if(Z<=0){//prevents the particle from starting 'beneath the ground'
-				throw new Exception();
-			}
-			z=Z;
+
+		if(Z<=0){//prevents the particle from starting 'beneath the ground'
+			throw new Exception();
+		}
+		z=Z;
 	}
 
 	/**

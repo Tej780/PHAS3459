@@ -25,14 +25,14 @@ public class ThreeVector{
 	 */
 	public ThreeVector unitVector() throws Exception{
 		ThreeVector u = new ThreeVector();	
-			if(this.mag() == 0){//prevents the program from attempting to produce a unit vector of the null vector (0,0,0)
-				throw new Exception();
-			}
-			double mag = this.mag();
-			double ux = this.x/mag;
-			double uy = this.y/mag;
-			double uz = this.z/mag;
-			u = new ThreeVector(ux, uy, uz);
+		if(this.mag() == 0){//prevents the program from attempting to produce a unit vector of the null vector (0,0,0)
+			throw new Exception();
+		}
+		double mag = this.mag();
+		double ux = this.x/mag;
+		double uy = this.y/mag;
+		double uz = this.z/mag;
+		u = new ThreeVector(ux, uy, uz);
 		return u;
 	}
 
@@ -105,13 +105,13 @@ public class ThreeVector{
 	 * @return Angle
 	 */
 	public static double angle(ThreeVector v, ThreeVector w) throws Exception{
-			double magA = v.mag();
-			double magB = w.mag();
-			if(magA==0 || magB==0){//as before, if either vector is the null vector, the angle is undefined so the program must be prevented from attempting this calculation
-				throw new Exception();}
-			double aDotb = v.dot(w);
-			double cosTheta = aDotb/(magA*magB);
-			double theta = Math.acos(cosTheta);//the angle should be in radians by default
+		double magA = v.mag();
+		double magB = w.mag();
+		if(magA==0 || magB==0){//as before, if either vector is the null vector, the angle is undefined so the program must be prevented from attempting this calculation
+			throw new Exception();}
+		double aDotb = v.dot(w);
+		double cosTheta = aDotb/(magA*magB);
+		double theta = Math.acos(cosTheta);//the angle should be in radians by default
 		return theta;
 	}					
 	public double angle(ThreeVector w) throws Exception{
