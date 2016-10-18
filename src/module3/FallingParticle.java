@@ -15,7 +15,7 @@ public class FallingParticle{
 
 	public FallingParticle(double mass, double drag) throws IllegalArgumentException{
 
-		if(mass <=0){//avoids unphysical systems with negative masses
+		if(mass <=0 || drag <=0){//avoids unphysical systems with negative masses
 			throw new IllegalArgumentException();
 		}
 		m=mass;
@@ -86,7 +86,10 @@ public class FallingParticle{
 	 *Runs while the particle is 'above the ground' and calls doTimeStep to recalculate and update the position, velocity and acceleration of the particle. Prints out the final velocity and time.
 	 *@param deltaT
 	 */
-	public void drop(double deltaT){
+	public void drop(double deltaT) throws Exception{
+		if(deltaT < 0){
+			throw new Exception();
+			}
 		while (z>0){
 			this.doTimeStep(deltaT);
 			t+=deltaT;
