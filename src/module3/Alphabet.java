@@ -20,12 +20,14 @@ public class Alphabet{
 	public static void main (String[] args){
 		StringBuilder s = new StringBuilder();
 		char randChar = randomCharacter();
-		int total = 0;
-		int exceptions = 0;
-		for (int i=0;i<400;i++){	
+		double total = 0;
+		double exceptions = 0;
+		double strnum = 0;
+		for (int i=0;i<400000;i++){	
 			if(Character.isLetterOrDigit(randChar)){
 				//if the character is a letter or digit, append it to the stringBuilder object
 				s.append(randChar);
+				strnum++;
 				try{
 					//if the character is an integer, parse it to allow us to use it in a calculation. Add its value to total.
 					total+=Integer.parseInt((Character.toString(randChar)));}
@@ -38,7 +40,15 @@ public class Alphabet{
 			randChar =  randomCharacter();
 		}	
 		System.out.println(s);
+		System.out.println("The total number of characters in the string is: "+ strnum);
 		System.out.println("Sum of all integer characters: "+total);
 		System.out.println("Total number of exceptions thrown: "+exceptions);
+		System.out.println("The following is because I am bored");
+		System.out.println("The total number of integers in the string is: "+(strnum-exceptions));
+		double average = total/(strnum-exceptions);
+		System.out.println("The average value of integers is: "+ average);
+		System.out.println("Considering the expectation value for the average is 4.5,"
+				+ "\nthis shows that the 'random' aspect of the random character is sufficiently random,"
+				+ "\nand not skewed (or at least not skewed enough for us to notice with this basic test).");
 	}
 }	
