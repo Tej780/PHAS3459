@@ -89,7 +89,7 @@ public class FallingParticle{
 	public void drop(double deltaT) throws Exception{
 		if(deltaT < 0){
 			throw new Exception();
-			}
+		}
 		while (z>0){
 			this.doTimeStep(deltaT);
 			t+=deltaT;

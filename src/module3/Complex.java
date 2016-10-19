@@ -2,14 +2,18 @@ package module3;
 
 public class Complex{
 
-	double real,imag;
+	private double real,imag;
 	public Complex(){}
 	public Complex(double a, double b){//represents the complex number a + bi
 		real=a;
 		imag=b;
 	}
 
-
+	//Complex numbers representing 1,0 and i
+		static final Complex ONE = new Complex(1,0);
+		static final Complex ZERO = new Complex();
+		static final Complex I = new Complex(0,1);
+	
 	/**
 	 * Returns the real part of the complex number
 	 * @return x, real component
@@ -83,7 +87,7 @@ public class Complex{
 	 *@return true or false
 	 */
 	public boolean equals(Complex c){
-		if(this.real == c.real && this.imag == c.imag){
+		if(this.real == c.real && this.imag == c.imag){//checks that the components of two Complex objects are the same
 			return true;
 		}		
 		else{
@@ -117,11 +121,6 @@ public class Complex{
 		Complex z = new Complex(x,y);
 		return z;
 	}
-
-	//Complex numbers representing 1,0 and i
-	static Complex ONE = new Complex(1,0);
-	static Complex ZERO = new Complex();
-	static Complex I = new Complex(0,1);
 
 	/**
 	 *Adds two complex numbers together
@@ -174,7 +173,7 @@ public class Complex{
 	public static void main(String[] args){
 		Complex z = new Complex(0,0);
 		Complex w = new Complex(6,10);
-		System.out.println(Complex.divide(z,w));
+		//System.out.println(Complex.divide(z,w));
 		System.out.println(w.normalised());
 		System.out.println(z.toString());
 		System.out.println(z.conjugate());
@@ -183,9 +182,9 @@ public class Complex{
 		System.out.println(z.real());
 		System.out.println(z.img());
 		System.out.println(ZERO.normalised());
-		System.out.println(Complex.divide(z,ZERO));
+		System.out.println(z.equals(ZERO));
 					      }
-*/
-	 
+	*/ 
+
 
 }

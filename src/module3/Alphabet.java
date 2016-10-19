@@ -22,8 +22,7 @@ public class Alphabet{
 		char randChar = randomCharacter();
 		int total = 0;
 		int exceptions = 0;
-		for (int i=0;i<400;i++){
-			System.out.println(i);	
+		for (int i=0;i<400;i++){	
 			if(Character.isLetterOrDigit(randChar)){
 				//if the character is a letter or digit, append it to the stringBuilder object
 				s.append(randChar);
@@ -39,7 +38,7 @@ public class Alphabet{
 			randChar =  randomCharacter();
 		}	
 		System.out.println(s);
-		System.out.println(total);
-		System.out.println(exceptions);
+		System.out.println("Sum of all integer characters: "+total);
+		System.out.println("Total number of exceptions thrown: "+exceptions);
 	}
 }	

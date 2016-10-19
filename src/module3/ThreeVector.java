@@ -1,9 +1,9 @@
 package module3;
 public class ThreeVector{
 
-	private double x,y,z;//represents the basis of the vector space
+	private double x,y,z;//represents the components of the vector to be stored by the object
 	public ThreeVector(){}
-	public ThreeVector(double x1, double x2, double x3){//represents the components of the vector to be created
+	public ThreeVector(double x1, double x2, double x3){//represents the components of the vector passed in by the object creator
 		x=x1;
 		y=x2;
 		z=x3;

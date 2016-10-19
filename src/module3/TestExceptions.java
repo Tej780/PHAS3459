@@ -1,8 +1,9 @@
 package module3;
 
-public class TestExceptions{
+public class TestExceptions{//Tests ThreeVector, Complex and FallingParticle classes to show that Exceptions are correctly thrown and caught
 
 	public static void main(String[] args){
+		//creating some variables that will cause Exceptions to be thrown, and some that will not
 		ThreeVector v1 = new ThreeVector(5,2,3);
 		ThreeVector v2 = new ThreeVector(4,5,1);
 		ThreeVector v3 = new ThreeVector();
@@ -28,38 +29,46 @@ public class TestExceptions{
 		}catch(Exception e){
 			System.out.println("Cannot calculate angle with vector (0,0,0)");
 		}   
-		
-		
+
+
 		//Checks that the Complex class correctly throws Exceptions
 		try{
 			System.out.println("C1/C2 = "+Complex.divide(c1,c2));//should not throw an Exception
 			System.out.println("C2/0 = "+Complex.divide(c1,Complex.ZERO));//should throw an Exception
 		}catch(Exception e){
-			System.out.println("Cannot divide by 0!");
+			System.out.println("Cannot divide (complex) number by 0!");
 		}
 		try{
 			System.out.println(c3.normalised());
 
 		}catch(ArithmeticException e){
-			System.out.println("Cannot normalise 0!");
+			System.out.println("Cannot normalise (complex number) 0!");
 
 
 		}
 		//Checks that the FallingParticle class correctly throws Exceptions
 		FallingParticle tej = null;
+		//should throw Exceptions
 		try{
 			tej = new FallingParticle(-4,4.1);
 		}catch(Exception e){
-			System.out.println("Mass and drag must be positive!");
+			System.out.println("Mass and drag of FallingParticle must be positive!");
 		}
-		
+
 		try{
 			tej = new FallingParticle(6.3,-4.1);
 		}catch(Exception e){
-			System.out.println("Mass and drag must be positive!");
+			System.out.println("Mass and drag of FallingParticle must be positive!");
 		}
 		System.out.println(tej);
-
+		//Should NOT throw an Exception
+		try{
+			tej = new FallingParticle(6,4);
+		}catch(Exception e){
+			System.out.println("Mass and drag of FallingParticle must be positive!");
+		}
+		System.out.println(tej);
+		//Both should throw Exceptions
 		try{
 			tej.setZ(8);
 			tej.drop(-0.001);
@@ -71,7 +80,7 @@ public class TestExceptions{
 			tej.setZ(-8);
 			tej.drop(0.0001);
 		}catch(Exception e){
-			System.out.println("Initial height must be positive!");
+			System.out.println("Initial height of FallingParticle must be positive!");
 		}
 
 	}
