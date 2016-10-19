@@ -172,7 +172,7 @@ public class Complex{
 
 	/*
 	public static void main(String[] args){
-		Complex z = new Complex(0.6,0.8);
+		Complex z = new Complex(0,0);
 		Complex w = new Complex(6,10);
 		System.out.println(Complex.divide(z,w));
 		System.out.println(w.normalised());
@@ -185,7 +185,7 @@ public class Complex{
 		System.out.println(ZERO.normalised());
 		System.out.println(Complex.divide(z,ZERO));
 					      }
-
-	 */
+*/
+	 
 
 }
