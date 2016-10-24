@@ -74,7 +74,7 @@ public class NumericalReader{
 		nr.analysisStart(savefile);
 		try{
 		while((line = br.readLine()) != null){
-				line.split("\t");
+				line.split("\\t");
 			nr.analyseData(line);
 						}
 		}catch(IOException e){
