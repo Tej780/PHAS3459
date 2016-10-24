@@ -13,6 +13,7 @@ public class NumericalReader{
 		Scanner s = new Scanner (System.in);
 		System.out.println("Enter the location to store the datafile:");
 		String input = s.next();
+		s.close();
 		return input;
 						}
 
@@ -34,7 +35,7 @@ public class NumericalReader{
         return br;
                                }
 
-	public static void analysisStart(String dataFile){
+	public void analysisStart(String dataFile){
 		minValue=0;
 		maxValue=0;
 		nValues=0;
@@ -65,9 +66,15 @@ public class NumericalReader{
 	}
 
 		public static void main(String[] args){
-		String datafile = "N:"+ File.separator+"mywork"+File.separator+"number.txt";
+		String dataFile = "N:"+ File.separator+"mywork"+File.separator+"number.txt";
+		File outputfile = new File(dataFile);
+		try{
+		FileWriter fw = new FileWriter(outputfile);
+		}catch(IOException e){
+			System.out.println(e);
+		}
 		String location = NumericalReader.getStringFromKeyboard();
-		String savefile = location + File.separator + datafile;
+		String savefile = location + File.separator + dataFile;
 		NumericalReader nr = new NumericalReader();
 		BufferedReader br = nr.brFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/data/module4/module4_data2.txt");
 		String line = "";
