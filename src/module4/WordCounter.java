@@ -24,7 +24,6 @@ public class WordCounter{
 	public static BufferedReader brFromFile(String fileName){
 		BufferedReader br = null;
 		try{
-
 		FileReader fr = new FileReader(fileName);
 		br = new BufferedReader(fr);
 		}catch(FileNotFoundException e){
@@ -39,7 +38,7 @@ public class WordCounter{
 			Scanner s = new Scanner(dataAsBR);
 		){
 		while(s.hasNext()){
-			String token = s.next();
+			s.next();
 			counter++;
 				}
 		}
@@ -63,6 +62,7 @@ public class WordCounter{
 			String file = s.next();
 			br = brFromURL(file);
 			x++;
+			
 		}else{
 			System.out.println("Unnacceptable input, please try again");
 		}}while(x==0);
