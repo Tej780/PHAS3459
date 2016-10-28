@@ -67,7 +67,7 @@ public class WordCounter{
 			System.out.println("Unnacceptable input, please try again");
 		}}while(x==0);
 		System.out.println("The total number of words in this resource: " +countWordsInResource(br));
-
+		s.close();
 		}
 
 
