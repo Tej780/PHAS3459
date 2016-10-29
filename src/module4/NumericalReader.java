@@ -9,7 +9,10 @@ public class NumericalReader{
 
 	private static double minValue, maxValue,sumOfValues;
 	private static int nValues;
-
+	FileWriter fw = null;
+	BufferedWriter bw = null;	
+	PrintWriter pw = null;
+	
 	public static String getStringFromKeyboard(){
 		Scanner s = new Scanner (System.in);
 		System.out.println("Enter the location to store the datafile:");
@@ -41,7 +44,6 @@ public class NumericalReader{
 		maxValue=0;
 		nValues=0;
 		sumOfValues=0;
-		FileWriter fw = null;
 		try{
 			File outputFile = new File(dataFile);
 			fw = new FileWriter(outputFile);
@@ -49,16 +51,19 @@ public class NumericalReader{
 		}catch(IOException e){
 			System.out.println(e);
 		}
-		BufferedWriter bw = new BufferedWriter(fw);
-		PrintWriter pw = new PrintWriter(bw);
+
 	}
 
 	public void analyseData(String line){
-		if(line.trim().isEmpty() || line.startsWith("x") || line.startsWith("c")){
+		if(line.trim().isEmpty() || Character.isLetter(line.charAt(0))){
 		}else {
 
 			String[] parts = line.split("\t|     | ");
 			for (int i=0;i<parts.length;i++){
+				bw = new BufferedWriter(fw);
+				pw = new PrintWriter(bw);
+				pw.println(parts[i]);
+				pw.flush();
 				double value = Double.parseDouble(parts[i]);
 				System.out.println(value);
 				sumOfValues += value;
@@ -71,6 +76,7 @@ public class NumericalReader{
 					maxValue = value;
 
 				}
+				
 			}
 		}
 	}
@@ -81,6 +87,15 @@ public class NumericalReader{
 		System.out.println("Maximum value: "+maxValue);
 		System.out.println("Number of datapoints: "+nValues);
 		System.out.println("Average: "+sumOfValues/nValues);
+
+		try {
+			fw.close();
+			bw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		pw.close();
 	}
 
 	public static void main(String[] args){
@@ -106,7 +121,7 @@ public class NumericalReader{
 		NumericalReader nr2 = new NumericalReader();
 		BufferedReader br2 = nr2.brFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/data/module4/module4_data2.txt");
 		line = "";
-		nr1.analysisStart(saveFile2);
+		nr2.analysisStart(saveFile2);
 		try{
 			while((line = br2.readLine()) != null){
 				line.split("\\t");
