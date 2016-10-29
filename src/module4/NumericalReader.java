@@ -37,47 +37,41 @@ public class NumericalReader{
 	}
 
 	public void analysisStart(String dataFile){
-		minValue=0;
+		minValue=10^99;
 		maxValue=0;
 		nValues=0;
 		sumOfValues=0;
+		FileWriter fw = null;
 		try{
-			FileWriter f = new FileWriter(dataFile);
-			BufferedWriter bw = new BufferedWriter(f);
-			PrintWriter pw = new PrintWriter(bw);
+			File outputFile = new File(dataFile);
+			fw = new FileWriter(outputFile);
+
 		}catch(IOException e){
 			System.out.println(e);
 		}
+		BufferedWriter bw = new BufferedWriter(fw);
+		PrintWriter pw = new PrintWriter(bw);
 	}
 
 	public void analyseData(String line){
 		if(line.trim().isEmpty() || line.startsWith("x") || line.startsWith("c")){
 		}else {
-	
+
 			String[] parts = line.split("\t|     | ");
-			System.out.println("length"+parts.length);
-			double[] values = new double[parts.length];
 			for (int i=0;i<parts.length;i++){
 				double value = Double.parseDouble(parts[i]);
+				System.out.println(value);
 				sumOfValues += value;
 				nValues++;
-				
-				values[i]=value;
-				System.out.println(values[i]);
-				}
-			
-			double max=1;
-			double min = 2;
-			for (int i = 0;i<values.length-1;i++){
-				//System.out.println(values[i]);
-				if(values[i+1]<=values[i]){
-					min = values[i+1];
-				}else if(values[i+1]>=values[i]){
-					max = values[i+1];
+				if(value<minValue){
+
+					minValue = value;
+				}else if(value>maxValue){
+
+					maxValue = value;
+
 				}
 			}
-			minValue = min;
-			maxValue = max;
 		}
 	}
 
@@ -86,32 +80,44 @@ public class NumericalReader{
 		System.out.println("Minimum value: "+minValue);
 		System.out.println("Maximum value: "+maxValue);
 		System.out.println("Number of datapoints: "+nValues);
-		System.out.println("Sum of values: "+sumOfValues);
+		System.out.println("Average: "+sumOfValues/nValues);
 	}
 
 	public static void main(String[] args){
-		String dataFile = "N:"+ File.separator+"mywork"+File.separator+"number.txt";
-		File outputfile = new File(dataFile);
-		try{
-			FileWriter fw = new FileWriter(outputfile);
-		}catch(IOException e){
-			System.out.println(e);
-		}
+		String dataFile1 = "numbers1.txt";
+		String dataFile2 = "numbers2.txt";
 		String location = NumericalReader.getStringFromKeyboard();
-		String savefile = location + File.separator + dataFile;
-		NumericalReader nr = new NumericalReader();
-		BufferedReader br = nr.brFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/data/module4/module4_data2.txt");
+		String saveFile1 = location + File.separator + dataFile1;
+		String saveFile2 = location + File.separator + dataFile2;
+		NumericalReader nr1 = new NumericalReader();
+		BufferedReader br1 = nr1.brFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/data/module4/module4_data1.txt");
 		String line = "";
-		nr.analysisStart(savefile);
+		nr1.analysisStart(saveFile1);
 		try{
-			while((line = br.readLine()) != null){
-				line.split("\\t");
-				nr.analyseData(line);
-				
+			while((line = br1.readLine()) != null){
+				nr1.analyseData(line);
+
 			}
 		}catch(IOException e){
 			System.out.println(e);
 		}
-		nr.analysisEnd();
+		nr1.analysisEnd();
+
+		NumericalReader nr2 = new NumericalReader();
+		BufferedReader br2 = nr2.brFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/data/module4/module4_data2.txt");
+		line = "";
+		nr1.analysisStart(saveFile2);
+		try{
+			while((line = br2.readLine()) != null){
+				line.split("\\t");
+				nr2.analyseData(line);
+
+			}
+		}catch(IOException e){
+			System.out.println(e);
+		}
+		nr2.analysisEnd();
+
+
 	}
 }
