@@ -93,6 +93,7 @@ public class NumericalReader{
 				}
 				
 			}
+			s.close();
 		}
 	}
 
