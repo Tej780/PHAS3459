@@ -1,5 +1,5 @@
-<<<<<<< HEAD
-//package module5;
+
+package module5;
 
 public class SquareMatrix{
 	
@@ -66,28 +66,3 @@ public class SquareMatrix{
 										}
 }
 
-
-
-=======
-package module5;
-
-public class SquareMatrix {
-	public SquareMatrix(double[][] elements) throws IllegalArgumentException{
-		if (elements.length != elements[0].length){
-			throw new IllegalArgumentException();
-		}
-	}
-	
-	public String toString(){
-		for (int i = 0; i < this.length; i++) {
-		    for (int j = 0; j < cols; j++) {
-		        System.out.println(matrix[i][j] + " ");
-		    }
-		    System.out.println();
-		}
-		
-	
-		
-	}
-}
->>>>>>> ba98154b160ff63a8816cd5537ca638d9b19b62e
