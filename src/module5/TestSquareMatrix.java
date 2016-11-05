@@ -1,30 +1,34 @@
-//package module5;
+package module5;
 
 public class TestSquareMatrix {
 
 	public static void main(String[] args) {
-		SquareMatrix s1 = new SquareMatrix(2);
-		for(int i=0;i<s1.length;i++){
-			for(int j=0;j<s1.length;j++){
-				s1.el[i][j] = 2*(i+1)*(j+1);
-			}
+		double[][] s1 = {{2,0,-1},{0,2,0},{3,0,1}};
+		double[][] s2 = {{-1,0,1},{0,1,0},{-3,0,1}};
+		double[][] s3 = {{2,3},{3,4}};
+		double[][] s4 = {{-4,3},{3,-2}};
+		try{
+			SquareMatrix A = new SquareMatrix(s1);
+			SquareMatrix B = new SquareMatrix(s2);
+			SquareMatrix C = new SquareMatrix(s3);
+			SquareMatrix D = new SquareMatrix(s4);
+
+
+			System.out.println(SquareMatrix.subtract(A, B));
+			System.out.println(SquareMatrix.add(A, B));
+			System.out.println(SquareMatrix.multiply(A, B));
+			System.out.println(B.multiply(A));
+			System.out.println(A.commute(B));
+
+			SquareMatrix CD = C.multiply(D);
+			System.out.println(CD.equals(SquareMatrix.identity(2)));;
+		}catch(IllegalArgumentException e){
+			System.out.println(e);
+
 		}
-		SquareMatrix s2 = new SquareMatrix(2);
-		for(int i=0;i<s2.length;i++){
-			for(int j=0;j<s2.length;j++){
-				s2.el[i][j] =3*(i+1)*(j+1);
-			}
-		}
-		
-		System.out.println(s1);
-		System.out.println(s2);
-		System.out.println(SquareMatrix.subtract(s1, s2));
-		System.out.println(SquareMatrix.multiply(s1, s2));
-		System.out.println(SquareMatrix.equals(s1,s2));
-		
-		
-		
-		
+
+
+
 	}
 
 }

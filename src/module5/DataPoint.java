@@ -1,4 +1,4 @@
-//package module5;
+package module5;
 
 public class DataPoint{
 	double x,y,ey;
