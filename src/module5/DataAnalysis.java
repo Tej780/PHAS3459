@@ -49,10 +49,20 @@ public class DataAnalysis {
 
 	public static void main(String[] args) {
 		dataFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/data/module5/module5-xy.txt");
-		for (int m=0;m<=100;m++){
+		double minChi = Double.POSITIVE_INFINITY;
+		double minN = Double.POSITIVE_INFINITY;
+		for (int m=0;m<=10;m++){
 			Theory t = new Theory(m);
-			System.out.println("Chi Squared for n = "+m+ ": "+goodnessOfFit(t,data));
+			double chi = goodnessOfFit(t,data);
+			System.out.println("Chi Squared for n = "+m+ ": "+chi);
+			if(chi<minChi){
+				minChi=chi;
+				minN=m;
+				
+			}
 		}
+		System.out.println("The minimum Chi Squared value is: "+minChi+" for n = "+minN);
+		
 	}
 
 }
