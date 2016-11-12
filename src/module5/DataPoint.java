@@ -9,6 +9,11 @@ public class DataPoint{
 		ey=error;
 }
 	
+	public String toString(){
+		String dataString=(x+", "+y+", "+ey);
+		return dataString;
+	}
+	
 	public DataPoint(double[] datapoint){
 		x=datapoint[0];
 		y=datapoint[1];
@@ -28,9 +33,9 @@ public class DataPoint{
 	}
 	
 	public static DataPoint parse(String measurement){
-		String[] measure = measurement.split(" ");
-		double[] datapoint = new double[3];
-		for (int i = 0; i<3;i++){
+		String[] measure = measurement.split("  ");
+		double[] datapoint = new double[measure.length];
+		for (int i = 0; i<datapoint.length;i++){
 			datapoint[i]=Double.parseDouble(measure[i]);
 		}
 		DataPoint dp = new DataPoint(datapoint);

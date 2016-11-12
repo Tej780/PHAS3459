@@ -8,11 +8,11 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Scanner;
+
 
 public class DataAnalysis {
 
-	private static ArrayList<DataPoint> data;
+	private static ArrayList<DataPoint> data = new ArrayList<DataPoint>();
 
 	public static void dataFromURL(String url){
 		try{
@@ -21,16 +21,11 @@ public class DataAnalysis {
 			InputStreamReader isr = new InputStreamReader(is);
 			BufferedReader br = new BufferedReader(isr);
 
-			String line = br.readLine();
-
-			while(line !=null){
-				Scanner s = new Scanner(line);
-				while(s.hasNext()){
-					String dataString = s.next();
-					DataPoint dp = DataPoint.parse(dataString);
+			String line="";
+			while((line=br.readLine()) !=null){
+					DataPoint dp = DataPoint.parse(line);
 					data.add(dp);
-				}
-				s.close();
+
 			}
 		}catch(FileNotFoundException e){
 			System.out.println(e);
@@ -41,17 +36,23 @@ public class DataAnalysis {
 		}
 	}
 
-	//public static double goodnessOfFit(){
-
-	//}
+	public static double goodnessOfFit(Theory ty,ArrayList<DataPoint> dps){
+		double chiSquared = 0;
+		for (int n = 0; n<dps.size();n++){
+			DataPoint dp = dps.get(n);
+			double x = dp.getX();
+			double yTheory = ty.y(x);
+			chiSquared += Math.pow((dp.getY()-yTheory), 2)/Math.pow(dp.getErr(), 2);
+		}
+		return chiSquared;
+	}
 
 	public static void main(String[] args) {
 		dataFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/data/module5/module5-xy.txt");
-		for(int i = 0;i<data.size();i++){
-			System.out.println(data.get(i));
-
+		for (int m=0;m<=10;m++){
+			Theory t = new Theory(m);
+			System.out.println("Chi Squared for n = "+m+ ": "+goodnessOfFit(t,data));
 		}
-
 	}
 
 }
