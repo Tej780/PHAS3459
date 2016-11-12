@@ -49,7 +49,7 @@ public class DataAnalysis {
 
 	public static void main(String[] args) {
 		dataFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/data/module5/module5-xy.txt");
-		for (int m=0;m<=10;m++){
+		for (int m=0;m<=100;m++){
 			Theory t = new Theory(m);
 			System.out.println("Chi Squared for n = "+m+ ": "+goodnessOfFit(t,data));
 		}
