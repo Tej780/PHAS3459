@@ -1,4 +1,4 @@
-package module5;
+package module6;
 
 public class DataPoint{
 	double x,y,ey;
@@ -18,7 +18,7 @@ public class DataPoint{
 	}
 
 	public String toString(){
-		String dataString=(x+", "+y+", "+ey);
+		String dataString=("x= "+x+", y= "+y+" +/- "+ey);
 		return dataString;
 	}
 
