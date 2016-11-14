@@ -46,7 +46,7 @@ public class DataPoint{
 		//technically allows for strings containing more data columns, but the DataPoint constructor will only take the first 3 values it comes across
 		for (int i = 0; i<datapoint.length;i++){
 			try{
-			datapoint[i]=Double.parseDouble(measure[i]);
+				datapoint[i]=Double.parseDouble(measure[i]);
 			}catch(Exception e){
 				System.out.println("Error! Data includes non numeric character");
 			}
