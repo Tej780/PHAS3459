@@ -43,7 +43,11 @@ public class Minerals {
 				}
 				hash.put(sampleData[0],sampleData[1]);
 			}
-
+			/*
+			 *for exception handling, I wasn't sure if any needed to be added here since we are building the program around the data		
+			 *for a very specific use case i.e. the data files have been set up to just "work" with the program. Decided to leave any extra
+			 *potential exceptions out in this case
+			 */
 		}catch(FileNotFoundException e){
 			System.out.println(e);
 		}catch(MalformedURLException e){
@@ -82,7 +86,7 @@ public class Minerals {
 		String maxMassKey="";
 		String minMassKey="";
 
-		for(Entry<String, String> entry: mass.entrySet()){
+		for(Entry<String, String> entry: mass.entrySet()){//takes every entry in order to compare masses
 			if(Double.parseDouble(entry.getValue())==maxMass){
 				maxMassKey=entry.getKey();
 			}else if(Double.parseDouble(entry.getValue())==minMass){

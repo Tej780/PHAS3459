@@ -7,14 +7,14 @@ public class DataPoint{
 	public DataPoint(double xPoint, double yPoint, double error){
 		x=xPoint;
 		y=yPoint;
-		ey=error;
+		ey=Math.abs(error);//assumes a negative error is same as positive error (i.e. +/- errorvalue) 
 	}
 
 	//construct from an array representing the values
 	public DataPoint(double[] datapoint){
 		x=datapoint[0];
 		y=datapoint[1];
-		ey=datapoint[2];
+		ey=Math.abs(datapoint[2]);//assumes a negative error is same as positive error (i.e. +/- errorvalue) 
 	}
 
 	public String toString(){
@@ -43,8 +43,13 @@ public class DataPoint{
 	public static DataPoint parse(String measurement){
 		String[] measure = measurement.split("  ");//separate values before converting to doubles
 		double[] datapoint = new double[measure.length];
+		//technically allows for strings containing more data columns, but the DataPoint constructor will only take the first 3 values it comes across
 		for (int i = 0; i<datapoint.length;i++){
+			try{
 			datapoint[i]=Double.parseDouble(measure[i]);
+			}catch(Exception e){
+				System.out.println("Error! Data includes non numeric character");
+			}
 		}
 		DataPoint dp = new DataPoint(datapoint);
 		return dp;
