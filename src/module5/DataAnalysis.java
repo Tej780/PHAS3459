@@ -9,9 +9,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
-import module6.DataPoint;
-
-
 public class DataAnalysis {
 
 	private static ArrayList<DataPoint> data = new ArrayList<DataPoint>();//holds all DataPoints
