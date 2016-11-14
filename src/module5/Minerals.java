@@ -17,6 +17,11 @@ public class Minerals {
 	private static HashMap<String,String> mass = new HashMap<String,String>();
 	private static HashMap<String,String> loc = new HashMap<String,String>();
 
+	/**
+	 * Gets data from the given URL, and input it into a HashMap
+	 * @param url
+	 * @param hash
+	 */
 	public static void dataToHash(String url,HashMap<String,String> hash){
 		try{
 			//pull data from url
@@ -48,6 +53,8 @@ public class Minerals {
 		}
 	}
 
+	//could have made more methods to shrink the main method, but none of the code is repeated per se, so decided it was more efficient this way
+	//if java could return multiple values (without the use of arrays/collections), I might have changed my mind
 	public static void main(String[] args) {
 		dataToHash("http://www.hep.ucl.ac.uk/undergrad/3459/data/module5/module5-samples.txt", mass);
 		//produce array of masses
@@ -69,7 +76,7 @@ public class Minerals {
 			}
 
 		}
-		
+
 		//find the key for the minimum and maximum mass. Could have made string arrays in case multiple keys found, but considering the problem
 		//this seemed unlikely (unlikely to get identical masses)
 		String maxMassKey="";

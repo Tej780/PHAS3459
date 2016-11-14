@@ -1,12 +1,14 @@
 package module5;
 
 public class SquareMatrix{
-
+	//useful for methods
 	int length;
+	//elements within the matrix
 	double[][] el;
 
+	//make matrix with given array of doubles
 	public SquareMatrix(double[][] elements) throws IllegalArgumentException{
-		if(elements.length != elements[0].length){
+		if(elements.length != elements[0].length){//insures array has correct dimension
 			throw new IllegalArgumentException("The matrix must be square!");
 		}
 		length = elements.length;
@@ -18,128 +20,135 @@ public class SquareMatrix{
 		}
 	}
 
+	//create empty matrix with dimensions specified. Elements must be inserted manually
 	public SquareMatrix(int i) throws IllegalArgumentException{
-		this.length= i;
-		el = new double[i][i];	
+		if (i>0){
+			this.length= i;
+			el = new double[i][i];	
+		}else{
+			throw new IllegalArgumentException("Matrix dimensions must be positive integer value");
+		}
 	}
 
-
 	public String toString(){
-		String matrix = "";
+		String matrix = "\n";
 		for(int i=0;i<this.length;i++){
 			for(int j=0;j<this.length;j++){
 				matrix = matrix + el[i][j]+"\t";
 			}
-			matrix = matrix + "\n";
+			matrix = matrix + "\n";//just to add some padding
 		}
 		return matrix;
 	}
 
 
-
-
-	public static SquareMatrix add(SquareMatrix sm1, SquareMatrix sm2) throws IllegalArgumentException{
-		SquareMatrix sm = new SquareMatrix(sm1.length);
-		if(sm1.length == sm2.length ){	
-			for (int i=0;i<sm1.length;i++){					
-				for(int j=0;j<sm1.length;j++){
-					sm.el[i][j] = sm1.el[i][j] + sm2.el[i][j];	
+	/**
+	 * Add matrix A to matrix B (A+B=C)
+	 * @param A, matrix A
+	 * @param B, matrix B
+	 * @return C, matrix C
+	 * @throws IllegalArgumentException
+	 */
+	public static SquareMatrix add(SquareMatrix A, SquareMatrix B) throws IllegalArgumentException{
+		SquareMatrix C = new SquareMatrix(A.length);
+		if(A.length == B.length ){//ensures matrices have same dimensions, else throw exception
+			for (int i=0;i<A.length;i++){					
+				for(int j=0;j<A.length;j++){
+					C.el[i][j] = A.el[i][j] + B.el[i][j];//add matching elements
 				}
 			}
 		}else{
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Matrices must have same dimensions!");
 
 		}
-		return sm;
+		return C;
 	}
 
-	public SquareMatrix add(SquareMatrix sm2) throws IllegalArgumentException{
-		SquareMatrix sm3 = new SquareMatrix(this.length);
-		if(this.length == sm2.length ){
-			sm3 = SquareMatrix.add(this, sm2);
-		}else{
-			throw new IllegalArgumentException();
-		}
-		return sm3;
+	public SquareMatrix add(SquareMatrix B) throws IllegalArgumentException{
+		return SquareMatrix.add(this, B);
 	} 
 
-	public static SquareMatrix subtract(SquareMatrix sm1, SquareMatrix sm2) throws IllegalArgumentException{
-		SquareMatrix sm = new SquareMatrix(sm1.length);
-		if(sm1.length == sm2.length ){	
-			for (int i=0;i<sm1.length;i++){					
-				for(int j=0;j<sm1.length;j++){
-					sm.el[i][j] = sm1.el[i][j] - sm2.el[i][j];	
+	/**
+	 * subtract matrix B from matrix A (A-B=C)
+	 * @param A, matrix A
+	 * @param B, matrix B
+	 * @return C, matrix C
+	 * @throws IllegalArgumentException
+	 */
+	public static SquareMatrix subtract(SquareMatrix A, SquareMatrix B) throws IllegalArgumentException{
+		SquareMatrix C = new SquareMatrix(A.length);
+		if(A.length == B.length ){//ensures matrices have same dimensions, else throw exception
+			for (int i=0;i<A.length;i++){					
+				for(int j=0;j<A.length;j++){
+					C.el[i][j] = A.el[i][j] - B.el[i][j];//subtract matching elements
 				}
 			}
 		}else{
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Matrices must have same dimensions!");
 
 		}
-		return sm;
+		return C;
 	}
 
-	public SquareMatrix subtract(SquareMatrix sm2) throws IllegalArgumentException{
-		SquareMatrix sm3 = new SquareMatrix(this.length);
-		if(this.length == sm2.length ){
-			sm3 = SquareMatrix.subtract(this, sm2);
-		}else{
-			throw new IllegalArgumentException();
-		}
-		return sm3;
+	public SquareMatrix subtract(SquareMatrix B) throws IllegalArgumentException{
+		return SquareMatrix.subtract(this, B);
 	} 
 
-	public static SquareMatrix multiply(SquareMatrix sm1, SquareMatrix sm2) throws IllegalArgumentException{
-		SquareMatrix sm = new SquareMatrix(sm1.length);
-		if(sm1.length == sm2.length ){	
-			for (int i=0;i<sm1.length;i++){					
-				for(int j=0;j<sm1.length;j++){
-					for(int k=0;k<sm1.length;k++){
-						sm.el[i][j] += sm1.el[i][k] * sm2.el[k][j];
+	/**
+	 * multiply matrix A with matrix B (AB=C)
+	 * @param A, matrix A
+	 * @param B, matrix B
+	 * @return C, matrix C
+	 * @throws IllegalArgumentException
+	 */
+	public static SquareMatrix multiply(SquareMatrix A, SquareMatrix B) throws IllegalArgumentException{
+		SquareMatrix C = new SquareMatrix(A.length);
+		if(A.length == B.length ){//ensures matrices have same dimensions, else throw exception
+			for (int i=0;i<A.length;i++){					
+				for(int j=0;j<A.length;j++){
+					for(int k=0;k<A.length;k++){
+						C.el[i][j] += A.el[i][k] * B.el[k][j];
 					}
 				}
 			}
 		}else{
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("The square matrices must have same dimensions!");
 
 		}
-		return sm;
+		return C;
 	}
 
-	public SquareMatrix multiply(SquareMatrix sm2){
-		SquareMatrix sm3 = new SquareMatrix(this.length);
-		if(this.length == sm2.length ){
-			for (int i=0;i<this.length;i++){					
-				for(int j=0;j<this.length;j++){
-					for(int k=0;k<this.length;k++){
-						sm3.el[i][j] += this.el[i][k] * sm2.el[k][j];
-					}
-				}
-			}
-		}else{
-			throw new IllegalArgumentException();
-		}
-		return sm3;
+	public SquareMatrix multiply(SquareMatrix B){
+		return SquareMatrix.multiply(this, B);
 	} 
 
 
-	public static boolean equals(SquareMatrix A,SquareMatrix B) {
-		if (A.length != B.length){
-			throw new RuntimeException("Matricies have different dimensions.");
+	/**
+	 * Checks if two matrices are equal
+	 * @param A
+	 * @param B
+	 * @return boolean
+	 * @throws IllegalArgumentException
+	 */
+	public static boolean equals(SquareMatrix A,SquareMatrix B) throws IllegalArgumentException {
+		if (A.length != B.length){//ensures matrices have same dimensions, else throw exception
+			throw new IllegalArgumentException("Matricies have different dimensions.");
 		}
 		for (int i = 0; i < A.length; i++){
 			for (int j = 0; j < A.length; j++){
 				if (A.el[i][j] != B.el[i][j]){
-					return false;
+					return false;//only runs if ANY corresponding elements are not equal
 				}
 			}	
 		}
 		return true;
 	}
 
-	public boolean equals(SquareMatrix s2){
-		return SquareMatrix.equals(this, s2);
+	public boolean equals(SquareMatrix B){
+		return SquareMatrix.equals(this, B);
 	}
 
+	//produce identity matrix with specified dimensions
 	public static SquareMatrix identity(int n){
 		SquareMatrix I = new SquareMatrix(n);
 		for(int i = 0;i<n;i++){
@@ -148,15 +157,23 @@ public class SquareMatrix{
 		return I;
 	}
 
-	public static SquareMatrix commute(SquareMatrix s1, SquareMatrix s2){
-		SquareMatrix s3 = SquareMatrix.subtract(s1.multiply(s2),s2.multiply(s1));
-		return s3;
+	/**
+	 * Finds the commutator for two given matrices
+	 * @param A
+	 * @param B
+	 * @return AB-BA
+	 * @throws IllegalArgumentException
+	 */
+	public static SquareMatrix commute(SquareMatrix A, SquareMatrix B) throws IllegalArgumentException{
+		if (A.length != B.length){//ensures matrices have same dimensions, else throw exception
+			throw new IllegalArgumentException("Matricies have different dimensions.");
+		}
+		SquareMatrix C = SquareMatrix.subtract(A.multiply(B),B.multiply(A));
+		return C;
 	}
 
-	public SquareMatrix commute(SquareMatrix s2){
-		SquareMatrix s3 = SquareMatrix.commute(this, s2);
-		return s3;
+	public SquareMatrix commute(SquareMatrix B){
+		return SquareMatrix.commute(this, B);
 	}
-
 }
 

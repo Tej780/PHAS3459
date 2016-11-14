@@ -13,7 +13,6 @@ public class TestSquareMatrix {
 			SquareMatrix C = new SquareMatrix(s3);
 			SquareMatrix D = new SquareMatrix(s4);
 
-
 			System.out.println(SquareMatrix.subtract(A, B));
 			System.out.println(SquareMatrix.add(A, B));
 			System.out.println(SquareMatrix.multiply(A, B));
@@ -24,11 +23,6 @@ public class TestSquareMatrix {
 			System.out.println(CD.equals(SquareMatrix.identity(2)));;
 		}catch(IllegalArgumentException e){
 			System.out.println(e);
-
 		}
-
-
-
 	}
-
 }
