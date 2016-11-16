@@ -28,7 +28,7 @@ public class Earthquake {
 		ID=id;
 	}
 	
-	public Earthquake parseData(String line){
+	/*public Earthquake parseData(String line){
 		Scanner s=new Scanner(line);
 		while(s.hasNext()){
 			year= Integer.parseInt(s.next());
@@ -50,5 +50,5 @@ public class Earthquake {
 		s.close();
 		
 		return earthquake;
-	}
+	}*/
 }
