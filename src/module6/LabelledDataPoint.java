@@ -1,14 +1,14 @@
 package module6;
 
 public class LabelledDataPoint extends DataPoint{
-	
+
 	String label;
-	
+
 	public LabelledDataPoint(double xPoint, double yPoint, double error, String lb) {
 		super(xPoint, yPoint, error);
 		label=lb;
 	}
-	
+
 	public LabelledDataPoint(double[] datapoint,String lb) {
 		super(datapoint);
 		label=lb;
@@ -18,7 +18,7 @@ public class LabelledDataPoint extends DataPoint{
 		String lbString = label+": x = "+ x +", y = "+ y +" +/- "+ey;
 		return lbString;
 	}
-	
+
 	/**
 	 * Turns a string of the 3 datapoints and convert it to a DataPoint object
 	 * @param measurement
@@ -40,7 +40,7 @@ public class LabelledDataPoint extends DataPoint{
 			String lb=measure[3];
 			dp = new LabelledDataPoint(datapoint,lb);
 		}else{
-		dp = new DataPoint(datapoint);
+			dp = new DataPoint(datapoint);
 		}
 		return dp;
 	}
