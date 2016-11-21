@@ -1,9 +1,9 @@
 package module6;
 
 public class PowerLawTheory implements Theory{
-	int n;
+	double n;
 
-	public PowerLawTheory(int power){//set exponent of theoretical function to be fitted
+	public PowerLawTheory(double power){//set exponent of theoretical function to be fitted
 		n=power;
 	}
 

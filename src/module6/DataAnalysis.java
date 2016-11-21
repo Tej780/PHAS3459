@@ -14,7 +14,7 @@ import java.util.Collection;
 public class DataAnalysis {
 
 	private static Collection<DataPoint> data = new ArrayList<DataPoint>();//holds all DataPoints
-
+	private static Collection<Theory> theories = new ArrayList<Theory>();//holds theories
 	/**
 	 * Gets data from a url represented by a url string
 	 * @param url
@@ -65,8 +65,15 @@ public class DataAnalysis {
 	public static void main(String[] args) {
 		dataFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/data/module6/module6-data.txt");
 		System.out.println(data);
-		//bestTheory(data,);
-		
+		Theory one = new PowerLawTheory(2);
+		Theory two = new PowerLawTheory(2.05);
+		Theory three = new QuadraticTheory(1,10,0);
+		theories.add(one);
+		theories.add(two);
+		theories.add(three);
+		ChiSquared c=new ChiSquared();
+		Theory best =bestTheory(data,theories,c);
+		System.out.println("The best theory is: "+best);
 		
 		/*
 		//just for fun. Seems more useful than manually testing 2 individual values

@@ -3,7 +3,10 @@ package module6;
 import java.util.Collection;
 import java.util.Iterator;
 
-public class ChiSquared {
+public class ChiSquared implements GoodnessOfFitCalculator{
+	
+	public ChiSquared(){}
+	
 	/**
 	 * Calculates Chi Square for a given theoretical function
 	 * @param ty, Theory object representing y = x^n
@@ -20,6 +23,8 @@ public class ChiSquared {
 			//calculate sum of (y - yTheory)^2/error^2
 			chiSquared += Math.pow((dp.getY()-yTheory), 2)/Math.pow(dp.getErr(), 2);
 		}
+		System.out.println(ty);
+		System.out.println(chiSquared);
 		return chiSquared;
 	}
 }
