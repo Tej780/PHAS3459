@@ -37,7 +37,7 @@ public class MidTermExam {
 
 			//Turn each line into a Player object and add to the Player list
 			while((line=br.readLine()) !=null){
-
+				//split string into tokens with tabs as the delimiter
 				Scanner s = new Scanner(line);
 				s.useDelimiter("\t");
 				//String array to be used to build the PLayer object
@@ -85,7 +85,7 @@ public class MidTermExam {
 				best=p;
 			}
 		}
-		System.out.println("The player with the most home runs is:\n"+best+"\nwith "+maxHomeRuns+" home runs");
+		System.out.println("The player with the most home runs is: "+best.name+", with "+maxHomeRuns+" home runs");
 	}
 
 
@@ -127,10 +127,10 @@ public class MidTermExam {
 				}
 			}
 			System.out.println("\n"+team+" has "+teamAtBats+" players with 10 or more AtBats");
-			System.out.println("In the team "+team+" the player with the highest Slugging Percentage is:\n"
-					+bestSlugger+"\nwith a slugging percentage of "+slugger);
-			System.out.println("The player with the highest On-Base plus Slugging figure is:\n"
-					+bestOPSPlayer+"\nwith an OPS of "+bestOPS+"\n");
+			System.out.println("In the team "+team+" the player with the highest Slugging Percentage is: "
+					+bestSlugger.name+ ", with a slugging percentage of "+slugger);
+			System.out.println("The player with the highest On-Base plus Slugging figure is: "
+					+bestOPSPlayer.name+", with an OPS of "+bestOPS+"\n");
 		}
 	}
 
