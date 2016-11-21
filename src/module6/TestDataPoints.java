@@ -8,16 +8,18 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collection;
 
 public class TestDataPoints {
 
-	private static ArrayList<DataPoint> data = new ArrayList<DataPoint>();//holds all DataPoints
+
 
 	/**
 	 * Gets data from a url represented by a url string
 	 * @param url
 	 */
-	public static void dataFromURL(String url){
+	public static Collection<DataPoint> dataFromURL(String url){
+		Collection<DataPoint> data = new ArrayList<DataPoint>();//holds all DataPoints
 		try{
 			//get data from URL
 			URL u = new URL(url);
@@ -38,10 +40,11 @@ public class TestDataPoints {
 		}catch(IOException e){
 			System.out.println(e);
 		}
+		return data;
 	}
 
 	public static void main(String[] args){
-		dataFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/data/module6/module6-data.txt");
+		Collection<DataPoint> data=dataFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/data/module6/module6-data.txt");
 		for(DataPoint dp : data){
 			System.out.println(dp);
 		}

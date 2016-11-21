@@ -21,7 +21,7 @@ public class PowerLawTheory implements Theory{
 	public String toString() {
 		return "PowerLawTheory y = x^" + n ;
 	}
-	
-	
+
+
 
 }

@@ -8,8 +8,8 @@ public class QuadraticTheory implements Theory{
 		b=x2;
 		c=x3;
 	}
-	
-	
+
+
 	/**
 	 * calculates y = ax^2 + bx + c
 	 * @param x
@@ -25,5 +25,5 @@ public class QuadraticTheory implements Theory{
 	public String toString() {
 		return "QuadraticTheory y = " + a + "x^2 + " + b + "x + " + c;
 	} 
-	
+
 }
