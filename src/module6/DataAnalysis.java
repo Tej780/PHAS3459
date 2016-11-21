@@ -42,29 +42,30 @@ public class DataAnalysis {
 		}
 	}
 
-	
+
 	private static Theory bestTheory(Collection<DataPoint> data,
-            Collection<Theory> theories, GoodnessOfFitCalculator gofCalculator) {
-        boolean first = true;
-        double bestGoodnessOfFit = 0.0;
-        Theory bestTheory = null;
-        for (Theory theory : theories) {
-            double gof = gofCalculator.goodnessOfFit(data, theory);
-            if (first) {
-                bestTheory = theory;
-                bestGoodnessOfFit = gof;
-                first = false;
-            } else if (gof < bestGoodnessOfFit) {
-                bestTheory = theory;
-                bestGoodnessOfFit = gof;
-            }
-        }
-        return bestTheory;
-    }
+			Collection<Theory> theories, GoodnessOfFitCalculator gofCalculator) {
+		boolean first = true;
+		double bestGoodnessOfFit = 0.0;
+		Theory bestTheory = null;
+		for (Theory theory : theories) {
+			double gof = gofCalculator.goodnessOfFit(data, theory);
+			if (first) {
+				bestTheory = theory;
+				bestGoodnessOfFit = gof;
+				first = false;
+			} else if (gof < bestGoodnessOfFit) {
+				bestTheory = theory;
+				bestGoodnessOfFit = gof;
+			}
+		}
+		System.out.println(bestGoodnessOfFit);
+		return bestTheory;
+	}
 
 	public static void main(String[] args) {
 		dataFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/data/module6/module6-data.txt");
-		System.out.println(data);
+		/*
 		Theory one = new PowerLawTheory(2);
 		Theory two = new PowerLawTheory(2.05);
 		Theory three = new QuadraticTheory(1,10,0);
@@ -74,29 +75,28 @@ public class DataAnalysis {
 		ChiSquared c=new ChiSquared();
 		Theory best =bestTheory(data,theories,c);
 		System.out.println("The best theory is: "+best);
-		
-		/*
-		//just for fun. Seems more useful than manually testing 2 individual values
-		double minChi = Double.POSITIVE_INFINITY;//better than setting an arbitrarily large limit
-		double minN = Double.POSITIVE_INFINITY;
-		//tests all theoretical functions within a given range
-		//Could modify to test non integer powers, but don't want to lose marks for doing extra work (Again) :(
-		for (int m=0;m<=10;m++){
-			Theory t = new Theory(m);
-			double chi = goodnessOfFit(t,data);
-			System.out.println("Chi Squared for n = "+m+ ": "+chi);
-			if(chi<minChi){
-				minChi=chi;
-				minN=m;
+		 */
 
+		//just for fun. Seems more useful than manually testing 3 theories
+
+		for(double a=0;a<10;a+=0.05){
+			for(double b=0;b<10;b+=0.05){
+				for(double c=0;c<10;c+=0.05){
+					QuadraticTheory q = new QuadraticTheory(a,b,c);
+					theories.add(q);
+				}
 			}
 		}
-		System.out.println("The minimum Chi Squared value is: "+minChi+" for n = "+(int)minN);
-		//come on, you wanted to know just as much
-		System.out.println("The reduced Chi Square is: "+minChi/(data.size()-1));
-		//hey, at least I didn't (yet) make a version with coefficients or adding powers of x
-		 * 
-		 */
 		
+		for(double n=0;n<10;n+=0.001){
+			PowerLawTheory p = new PowerLawTheory(n);
+			theories.add(p);
+		}
+		System.out.println(theories.size());
+		ChiSquared c=new ChiSquared();
+		Theory best =bestTheory(data,theories,c);
+		System.out.println("The best theory is: "+best);
+
+
 	}
 }

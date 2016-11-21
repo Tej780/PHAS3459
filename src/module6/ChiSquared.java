@@ -23,8 +23,7 @@ public class ChiSquared implements GoodnessOfFitCalculator{
 			//calculate sum of (y - yTheory)^2/error^2
 			chiSquared += Math.pow((dp.getY()-yTheory), 2)/Math.pow(dp.getErr(), 2);
 		}
-		System.out.println(ty);
-		System.out.println(chiSquared);
+
 		return chiSquared;
 	}
 }
