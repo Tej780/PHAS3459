@@ -8,11 +8,12 @@ public class ThreadsMain {
 		prime.start();
 		count.start();
 		try {
-			prime.join();
+			count.join();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		prime.interrupt();
 
 	}
 

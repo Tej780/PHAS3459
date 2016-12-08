@@ -13,16 +13,14 @@ public class CountdownTask implements Runnable{
 	@Override
 	public void run() {
 		long startTime=System.currentTimeMillis();
-		System.out.println(startTime);
 		long timeElapsed=0;
 		while(timeElapsed<timeLimit*1000){
 			timeElapsed=System.currentTimeMillis()-startTime;
 			if(timeElapsed%1000==0){
-				System.out.println(timeElapsed/1000);
+				System.out.println(timeLimit-timeElapsed/1000);
 			}
 		}
 		return;
-		
 	}
 
 }
