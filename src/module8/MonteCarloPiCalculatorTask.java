@@ -16,7 +16,9 @@ public class MonteCarloPiCalculatorTask implements Callable<Double> {
 			double x = rand.nextDouble();
 			double y = rand.nextDouble();
 			double r2 = x*x + y*y;
-			if (r2 < 1.0) ++n_in;
+			if (r2 < 1.0){
+				++n_in;
+			}
 		}
 		return 4.0 * n_in / n_points;
 	}
