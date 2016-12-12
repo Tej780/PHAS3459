@@ -8,13 +8,12 @@ public class ThreadsMain {
 		prime.start();
 		count.start();
 		try {
+			//waits for the count thread to finish executing before interrupting prime thread
 			count.join();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Timer Thread interrupted");
 		}
 		prime.interrupt();
-
 	}
-
 }
