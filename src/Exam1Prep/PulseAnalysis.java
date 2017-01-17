@@ -13,12 +13,18 @@ public class PulseAnalysis {
 			int noSignals=0;
 			double meanAmp=0;
 			double meanArrival=0;
+			int numberOfSignals=0;
 			for(Pulse p:pulsesArray){
 
 				if (p.ID.equals(s)){
 					noSignals++;
 					meanAmp+=p.amplitude;
 					meanArrival+=p.arrival;
+					int sigPerPulse=0;
+					for(double d:p.sig){
+						sigPerPulse++;
+					}
+					numberOfSignals+=sigPerPulse;
 				}
 			}
 			meanAmp=meanAmp/noSignals;
@@ -26,7 +32,7 @@ public class PulseAnalysis {
 			double distance = distHash.get(s);
 			double speed = distance/meanArrival;
 			System.out.println("For Detector "+s+" the mean amplitude is "+meanAmp+" and the mean arrival time is "+meanArrival
-					+".\nThe average speed of particles is "+speed);
+					+".\nThe average speed of particles is "+speed + " and the number of signals is "+numberOfSignals);
 		}
 
 	}
