@@ -4,16 +4,27 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+import javafx.scene.shape.Circle;
+
 public class SolarSystem {
-
+	/** Create and display JFrame containing animation GUI panel */
 	public static void main(String[] args) {
-
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				JFrame frame = new JFrame("Animation demo");
+				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				frame.setSize(250,300);
+				JPanel panel = new AnimationGuiPanel();
+				frame.add(panel);
+				frame.setVisible(true);
+			}
+		});
 	}
 
 }
 
 class AnimationPanel extends JPanel implements ActionListener {
-	private Polygon shape; // shape to be displayed
+	private Circle shape; // shape to be displayed
 	private final int delay = 50; // delay in ms between steps
 	private final double delta; // angle to rotate in each step
 	private double angle = 0.0; // current angle of shape on screen
@@ -30,7 +41,7 @@ class AnimationPanel extends JPanel implements ActionListener {
 		int size = Math.min(width, height) / 4;
 		int[] xpts = {size,-size,-size,size};
 		int[] ypts = {size, size,-size,-size};
-		shape = new Polygon(xpts,ypts,4);
+		shape = new Circle(3);
 		delta = 2*Math.PI*delay/(rotationTime*1000);
 		animationTimer = new Timer(delay,this);
 		animationTimer.start();
@@ -48,8 +59,8 @@ class AnimationPanel extends JPanel implements ActionListener {
 		g.translate(width/2, height/2);
 		// Rotate and draw shape
 		g.setColor(Color.YELLOW);
-		Polygon rotatedShape = rotatePolygon(shape, angle);
-		g.fillPolygon(rotatedShape);
+		////Polygon rotatedShape = rotatePolygon(shape, angle);
+		////g.fillPolygon(rotatedShape);
 	}
 
 	private static Polygon rotatePolygon(Polygon poly, double angle) {
@@ -109,17 +120,6 @@ class AnimationGuiPanel extends JPanel implements ActionListener {
 	public void stop() {animPanel.stop();}
 
 
-	/** Create and display JFrame containing animation GUI panel */
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				JFrame frame = new JFrame("Animation demo");
-				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				frame.setSize(250,300);
-				JPanel panel = new AnimationGuiPanel();
-				frame.add(panel);
-				frame.setVisible(true);
-			}
-		});
-	}
+	
+
 }
