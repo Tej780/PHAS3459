@@ -1,11 +1,10 @@
 package Exam1Prep;
 
-
 public class Detectors {
 
 	String ID;
 	double d;
-	
+
 	//constructor
 	public Detectors(String code, double distance){
 		this.ID = code;
@@ -14,8 +13,8 @@ public class Detectors {
 
 	public String toString(){
 		return "Detector " +ID + " is " + d + "m away" +"\n";	
-		}
-	
+	}
+
 	public String getID() {
 		return ID;
 	}
@@ -32,6 +31,4 @@ public class Detectors {
 		this.d = d;
 	}
 
-	
-	
 }

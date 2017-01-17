@@ -7,11 +7,7 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
-
-import exam1.Player;
 
 /**
  * Creating ArrayList of the signals for every line of pulse in the signals text file
@@ -19,12 +15,13 @@ import exam1.Player;
  *
  */
 public class Signals {
-	
 
 	public static ArrayList<Pulse> getSignals(String url){
 
 	 //instantiate empty Arraylist to hold each Arraylist of signals
 		ArrayList<Pulse> pulses = new ArrayList<Pulse>();
+		//amplitude Map
+		ArrayList<Double> amp = new ArrayList<Double>();
 
 		try {
 			//reading url data
@@ -66,18 +63,19 @@ public class Signals {
 					//iterating timer variable to get the time passed
 					timer++;
 					
-					//				//getting max value
-					//				if (x > maxValue) {
-					//					maxValue = x;	
-					//					arrival = timer;					
-					//				}								
+					//getting max value
+					if (x > maxValue) {
+					maxValue = x;	
+					arrival = timer;					
+					}								
 					
-				}								
-				//System.out.println("For detector: " +ID + ", the arrival time is " + arrival +" nanoseconds and the amplitude is " +maxValue );			
-				//System.out.println(new Pulse(ID, signalPerDet));
+				}					
+				//System.out.println("For detector: " +ID + ", the arrival time is " + arrival +" nanoseconds and the amplitude is " +maxValue );
+				amp.add(maxValue);
 				//appending each data point to arraylist
 			
-				Pulse p = new Pulse(ID, signalPerDet);
+				Pulse p = new Pulse(ID, signalPerDet,maxValue,arrival);
+				System.out.println(p);
 		
 				pulses.add(p);
 			
@@ -85,7 +83,14 @@ public class Signals {
 				s.close();
 			}
 
+			System.out.println("The number of pulses is : "+counter);
 			
+			double mean=0;
+			for(Double d:amp){
+				mean+=d;
+			}
+			mean = mean/counter;
+			System.out.println("The mean amplitude is: "+mean );
 
 		}
 		catch (MalformedURLException e){
@@ -95,20 +100,6 @@ public class Signals {
 			e.printStackTrace();
 		}
 		return pulses;
-	}
-
-
-	//calculate Arrival time for each pulse
-	public static double arrivalTime(ArrayList<Double> signals){
-		
-		double maxValue = Double.NEGATIVE_INFINITY;
-		
-		for (double x : signals){
-			if (x > maxValue) {
-				maxValue =x;
-			}
-		}
-		return maxValue;
-	}
+	}	
 
 }

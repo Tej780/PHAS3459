@@ -3,36 +3,32 @@ package Exam1Prep;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import exam1.Player;
-
 public class PulseAnalysis {	
 
-	static //fill hashmaps with ID, signals
-	ArrayList<Pulse> pulsesArray = new ArrayList<Pulse> (Signals.getSignals("http://www.hep.ucl.ac.uk/undergrad/3459/exam_data/2015-16/signals.txt"));
-	ArrayList<Detectors> distHash = new ArrayList<Detectors> (Distance.getDist("http://www.hep.ucl.ac.uk/undergrad/3459/exam_data/2015-16/detectors.txt"));
+	static ArrayList<Pulse> pulsesArray = new ArrayList<Pulse> (Signals.getSignals("http://www.hep.ucl.ac.uk/undergrad/3459/exam_data/2015-16/signals.txt"));
+	static HashMap<String, Double> distHash = new HashMap<String,Double> (Distance.getDist("http://www.hep.ucl.ac.uk/undergrad/3459/exam_data/2015-16/detectors.txt"));
 
 	public static void main(String[] args) {
+		for(String s:distHash.keySet()){
+			int noSignals=0;
+			double meanAmp=0;
+			double meanArrival=0;
+			for(Pulse p:pulsesArray){
 
-		//creating empty HashMap(K,V)
-		HashMap<String, Double> hmapDist = new HashMap<String, Double>();
-		HashMap<String, ArrayList> hmapPulse = new HashMap<String, ArrayList>();
-
-		
-		int i=0;
-		double amp =0;
-		//looping through array list to get number of pulses
-		//for each object in array list, return the array list of the signals
-		for (Pulse number : pulsesArray){		
-			//System.out.println(number);
-			amp = Signals.arrivalTime(number.getSig());
-			//iterate count to get total number of players
-			i++;	
-			System.out.println("amplitude " +amp);
-
+				if (p.ID.equals(s)){
+					noSignals++;
+					meanAmp+=p.amplitude;
+					meanArrival+=p.arrival;
+				}
+			}
+			meanAmp=meanAmp/noSignals;
+			meanArrival=meanArrival/noSignals;
+			double distance = distHash.get(s);
+			double speed = distance/meanArrival;
+			System.out.println("For Detector "+s+" the mean amplitude is "+meanAmp+" and the mean arrival time is "+meanArrival
+					+".\nThe average speed of particles is "+speed);
 		}
-		
-		System.out.println("number of pulses is " +i);
-		
+
 	}
 
 }
