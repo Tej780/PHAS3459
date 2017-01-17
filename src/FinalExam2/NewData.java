@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class TidalData {
+public class NewData {
 	
 	static ArrayList<Tides> tides = new ArrayList<Tides>();
 	static HashMap<String,String> sites = new HashMap<String, String>();
@@ -36,12 +36,13 @@ public class TidalData {
 					Scanner s = new Scanner (line);
 		
 					//assign first character as the ID in String type
-					String ID = s.next();
+					
 					int year = s.nextInt();
 					byte month = s.nextByte();
 					byte day = s.nextByte();
 					byte hour = s.nextByte();
 					byte minute = s.nextByte();
+					String ID = s.next();
 					double seaLevel = s.nextDouble();
 					double predictedLevel=s.nextDouble();
 					
@@ -100,44 +101,13 @@ public class TidalData {
 	}
 
 	public static void main(String[] args) {
-		dataFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/exam-data/2014-15/tides-1999.txt");
-		dataFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/exam-data/2014-15/tides-2000.txt");
-		dataFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/exam-data/2014-15/tides-2001.txt");
+		dataFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/exam-data/2014-15/part3/tides-2004.txt");
+		dataFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/exam-data/2014-15/part3/tides-2005.txt");
+		dataFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/exam-data/2014-15/part3/tides-2006.txt");
 		
-		siteData("http://www.hep.ucl.ac.uk/undergrad/3459/exam-data/2014-15/sites.txt");
-		highest();
+		siteData("http://www.hep.ucl.ac.uk/undergrad/3459/exam-data/2014-15/part3/sites.txt");
 		
-		System.out.println("");
-		Mean m = new Mean();
-		m.average(tides, sites);
-		System.out.println("");
-		Range r = new Range();
-		r.average(tides,sites);
-		System.out.println("");
 		Surge.highestSurge(tides, sites);
-		
-	}
-	
-	public static void highest(){
-		double highTide = Double.NEGATIVE_INFINITY;
-		String id = "";
-		String date = "";
-		String time = "";
-		for(Tides t:tides){
-			if(t.seaLevel>highTide){
-				highTide=t.seaLevel;
-				id=t.ID;
-				date= t.day+"/"+t.month+"/"+t.year;
-				time= t.hour+":"+t.minute;
-			}
-		}
-		
-		String highName=sites.get(id);
-		
-		System.out.println("The highest level is "+ highTide);
-		System.out.println("The name and ID of the highest level is: "+ highName+", "+id);
-		System.out.println("The highest level occured on "+date+" at "+time);
-	
 		
 	}
 
