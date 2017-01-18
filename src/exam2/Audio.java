@@ -5,10 +5,10 @@ import java.util.ArrayList;
 public class Audio {
 	
 		String instrument,filename;
-		int sampleFreq,sampleNo,aMax;
+		double sampleFreq,sampleNo,aMax;
 		ArrayList<Integer> amplitude = new ArrayList<Integer>();
 		
-		public Audio(String name,String fname, int freq,int num, int max, ArrayList<Integer> amp){
+		public Audio(String name,String fname, double freq,double num, double max, ArrayList<Integer> amp){
 			instrument = name;
 			filename=fname;
 			sampleFreq = freq;

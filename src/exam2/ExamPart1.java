@@ -26,8 +26,8 @@ public class ExamPart1 {
 			double duration = (a.sampleNo)/a.sampleFreq;
 			System.out.println("Duration: "+duration+" s");
 
-			int square=0;
-			for(int i :a.amplitude){
+			double square=0;
+			for(double i :a.amplitude){
 				square+=(i*i);
 			}
 			double meanSquare = square/a.sampleNo;
@@ -40,7 +40,7 @@ public class ExamPart1 {
 		}	
 	}
 
-	private static void audiodata() {
+	protected static void audiodata() {
 		Audio A=instrumentDataFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/exam-data/2016-17/genA.txt");
 		Audio B=instrumentDataFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/exam-data/2016-17/genB.txt");
 		Audio C=instrumentDataFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/exam-data/2016-17/genC.txt");
@@ -116,9 +116,9 @@ public class ExamPart1 {
 			InputStreamReader sr = new InputStreamReader(is);
 			br = new BufferedReader(sr);						
 
-			int sFreq=0;
-			int sNum=0;
-			int aMax=0;
+			double sFreq=0;
+			double sNum=0;
+			double aMax=0;
 			ArrayList<Integer> amp = new ArrayList<Integer>();
 			//breaking buffered reader into lines to be scanned for analysis 
 			String line=br.readLine();
