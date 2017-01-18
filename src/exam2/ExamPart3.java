@@ -10,13 +10,14 @@ public class ExamPart3 extends ExamPart2{
 
 		double[] f= {100,400,1000};
 		for(Audio a:audio){
-			System.out.println("Audio: "+a.instrument+", "+a.filename);
-			double[] d = new double[f.length];
-			for(int i=0;i<f.length;i++){
+			System.out.println("\nAudio: "+a.instrument+", "+a.filename);
+			double[] d = new double[f.length];//array to hold the spectral densities 
+			for(int i=0;i<f.length;i++){//calculates the spectral density for each frequency
 				d[i]=spectralDensity(a,f[i]);
 
 			}
 
+			//finds the frequency corresponding to the highest spectral density
 			double max = Double.NEGATIVE_INFINITY;
 			double maxFreq=0;
 			for (int i=0;i<d.length;i++) {
@@ -27,6 +28,7 @@ public class ExamPart3 extends ExamPart2{
 				}
 			}
 
+			//classifies the sound by the highest spectral density
 			LowMediumHigh lmh = new LowMediumHigh();
 			System.out.println(lmh.classify(maxFreq));
 
@@ -34,6 +36,12 @@ public class ExamPart3 extends ExamPart2{
 
 	}
 
+	/**
+	 * This method finds the spectral density of an audio sample at a given frequency
+	 * @param a, the audio sample
+	 * @param f, the frequency at which we find the spectral density
+	 * @return the spectral density
+	 */
 	private static double spectralDensity(Audio a,double f) {
 		double t = (a.sampleNo/a.sampleFreq);
 		double bigN = a.sampleNo;

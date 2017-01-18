@@ -3,7 +3,8 @@ package exam2;
 import java.util.ArrayList;
 
 public class Audio {
-
+	
+	//member variables of the Audio object
 	String instrument,filename;
 	double sampleFreq,sampleNo,aMax;
 	ArrayList<Integer> amplitude = new ArrayList<Integer>();

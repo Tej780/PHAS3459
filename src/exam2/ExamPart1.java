@@ -10,15 +10,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-
 public class ExamPart1 {
 
-
+	//Create member variables to store the audio and file data
 	static HashMap<String,String> index = new HashMap<String,String>();
 	static ArrayList<Audio> audio = new ArrayList<Audio>();
 
 	public static void main(String[] args) {
+		//get data from index file
 		indexdata("http://www.hep.ucl.ac.uk/undergrad/3459/exam-data/2016-17/index.txt");
+		//get Audio data and make the Arraylist
 		audiodata();
 
 		for(Audio a:audio){
@@ -26,6 +27,7 @@ public class ExamPart1 {
 			double duration = (a.sampleNo)/a.sampleFreq;
 			System.out.println("Duration: "+duration+" s");
 
+			//calculate Root Mean Square of amplitude data
 			double square=0;
 			for(double i :a.amplitude){
 				square+=(i*i);
@@ -33,6 +35,7 @@ public class ExamPart1 {
 			double meanSquare = square/a.sampleNo;
 			double RMS = Math.sqrt(meanSquare);
 
+			//convert amplitude data to dBFS
 			double A = 20*(Math.log10(RMS/a.aMax));
 			System.out.println("Amplitude of signal in dBFS: "+A);
 			System.out.println("Instrument: "+a.instrument+"\n");
@@ -40,6 +43,9 @@ public class ExamPart1 {
 		}	
 	}
 
+	/**
+	 * Gets audio data from the given URL and turns it into an Audio object before adding it to the Audio ArrayList
+	 */
 	protected static void audiodata() {
 		Audio A=instrumentDataFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/exam-data/2016-17/genA.txt");
 		Audio B=instrumentDataFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/exam-data/2016-17/genB.txt");
@@ -55,9 +61,11 @@ public class ExamPart1 {
 		audio.add(Two);
 		audio.add(Three);
 		audio.add(Four);
-
 	}
 
+	/**
+	 * Gets the index data for the instruments and their respective files
+	 */
 	public static void indexdata(String url){
 
 		try {
@@ -77,18 +85,15 @@ public class ExamPart1 {
 
 				Scanner s = new Scanner (line);
 
-				//assign first character as the ID in String type
 				while(s.hasNext()){
 					String filename = s.next();
 					String instrument = s.next();
-
+					//add data to HashMap using the name of the file as the Key
 					index.put(filename,instrument);		
 				}
 				//close scanner
 				s.close();
 			}
-
-
 		}
 		catch (MalformedURLException e){
 			e.printStackTrace();
@@ -96,15 +101,21 @@ public class ExamPart1 {
 		catch (IOException e){
 			e.printStackTrace();
 		}
-
 	}	
 
 
 
+	/**
+	 * Gets the audio data from a particular file and creates and returns Audio object
+	 * @param url
+	 * @return Audio object
+	 */
 	public static Audio instrumentDataFromURL(String url){
 
 		Audio a = null;
+		//gets the end of the url as this is the filename for the instrument
 		String filename=url.split("/")[(url.split("/").length-1)];
+		//finds the instrument, corresponding to the file, from the index
 		String instrument = index.get(filename);
 
 		try {
@@ -116,11 +127,14 @@ public class ExamPart1 {
 			InputStreamReader sr = new InputStreamReader(is);
 			br = new BufferedReader(sr);						
 
-			double sFreq=0;
-			double sNum=0;
-			double aMax=0;
-			ArrayList<Integer> amp = new ArrayList<Integer>();
+			//variables representing the member variables of the Audio object
+			double sFreq=0;//sample frequency
+			double sNum=0;//number of samples
+			double aMax=0;//maximum amplitude
+			ArrayList<Integer> amp = new ArrayList<Integer>();//array of integers representing the amplitude
 			//breaking buffered reader into lines to be scanned for analysis 
+			
+			//gets the data for the member variables from the very first line of the file
 			String line=br.readLine();
 			Scanner s = new Scanner(line);
 			while(s.hasNext()){
@@ -129,7 +143,7 @@ public class ExamPart1 {
 				aMax=s.nextInt();
 			}
 
-
+			//gets the amplitude data for the Arraylist from every subsequent line
 			//scanning through each buffered reader line
 			while ((line = br.readLine()) != null){	
 				s = new Scanner (line);
@@ -138,15 +152,11 @@ public class ExamPart1 {
 				}
 
 
-				//close scanner
+				//close scanner to prevent leaking
 				s.close();
 			}
-
+			//make Audio object
 			a = new Audio(instrument,filename, sFreq,sNum,aMax,amp);
-
-
-
-
 		}
 		catch (MalformedURLException e){
 			e.printStackTrace();
