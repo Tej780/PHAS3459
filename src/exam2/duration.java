@@ -1,7 +1,7 @@
 package exam2;
 
 public class duration implements Classification{
-	
+
 	public duration(){}
 
 	@Override

@@ -1,7 +1,7 @@
 package exam2;
 
 public class volume implements Classification {
-	
+
 	public volume(){}
 
 	@Override
